@@ -3,7 +3,7 @@
 This repository contains scripts to implement the Continuous Authority to Operate framework.
 
 ## Scripts:
-**CATO-collection_query.ps1** - This script is used for the "Continuous Authority to Operate" (C-ATO) concepts to identify all vulnerabilities associated with a [Collection](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-admin/configure/collections.html) of images. The output is a CSV file containing all the unique CVE/packages found in all the images within a collection. An ATO Auditor can make the determination of what [Tag](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-admin/configure/tags.html) they want to associate with each CVE. The CVS file is then used as input for the CATO-tag_population.ps1 script to associate CVEs to Tags within the Console.
+**CATO-collection_query.ps1** - This script is used for the "Continuous Authority to Operate" (C-ATO) concepts to identify all vulnerabilities associated with a [Collection](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-admin/configure/collections.html) of images. The output is a CSV file containing all the unique CVE/packages found in all the images within a collection. An ATO Auditor can make the determination of what [Tag](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-admin/configure/tags.html) they want to associate with each CVE. The CSV file is then used as input for the CATO-tag_population.ps1 script to associate CVEs to Tags within the Console.
 
   * Logic:
     1. Generates a list of all the images within a Collection supplied as a command line argument.
