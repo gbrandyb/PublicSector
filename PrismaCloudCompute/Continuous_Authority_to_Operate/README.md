@@ -1,5 +1,3 @@
-Palo Alto Networks Federal Product Management Team
-
 # Continuous Authority to Operate
 
 This repository contains scripts to implement the Continuous Authority to Operate framework.
