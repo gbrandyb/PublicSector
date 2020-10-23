@@ -12,6 +12,9 @@
 #   1 - Reads in the CSV supplied as command lime argument
 #   2 - Associates CVEs to Tags
 #
+# Updates: 
+#   20201022 - Works with v20.09 API and CSV output has been modified to work with bulk_tagger.py python script - https://github.com/twistlock/sample-code/blob/f01089aa7a0b00f025397618ebb3de97e60d70ba/computeAPI/cve_tags/bulk_tagger.py
+#
 # Requires: powershell v6 https://blogs.msdn.microsoft.com/powershell/2018/01/10/powershell-core-6-0-generally-available-ga-and-supported/
 # Discalimer: Use of this script does not imply any rights to Palo Alto Networks products and/or services.
 #
@@ -45,13 +48,13 @@ $cred = Get-Credential
 foreach($cve in $cves)
     {
     $i++
-    $debug_output = $cve.cve + "|" + $cve.PackageName + "|" + $cve.Tag
+    $debug_output = $cve.cve + "|" + $cve.packageName + "|" + $cve.tag
     write-debug $debug_output
 
     # build the json payload for the API call            
     $tag_post_payload = @{
     "id" = $cve.cve
-    "packageName" = $cve.PackageName
+    "packageName" = $cve.packageName
     }
 
     # convert to json
@@ -59,7 +62,7 @@ foreach($cve in $cves)
     write-debug $json_payload
 
     # build the post URL
-    $request = "$tlconsole/api/v1/tags/"+$cve.Tag+"/vuln"
+    $request = "$tlconsole/api/v1/tags/"+$cve.tag+"/vuln"
     write-debug $request
     $header = @{"Content-Type" = "application/json"}
     $return = Invoke-RestMethod $request -Authentication Basic -Credential $cred -AllowUnencryptedAuthentication -SkipCertificateCheck -Method "Post" -Header $header -Body $json_payload
