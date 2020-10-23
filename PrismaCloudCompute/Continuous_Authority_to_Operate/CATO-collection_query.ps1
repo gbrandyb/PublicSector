@@ -11,6 +11,9 @@
 #   3 - Calls "Unique_CVE" function to identify all the CVE/packages found in all the unique images
 #   4 - Generates a CSV output file for the ATO Auditor to review and associate Tags
 #
+# Updates: 
+#   20201022 - Works with v20.09 API and CSV output has been modified to work with bulk_tagger.py python script - https://github.com/twistlock/sample-code/blob/f01089aa7a0b00f025397618ebb3de97e60d70ba/computeAPI/cve_tags/bulk_tagger.py
+#
 # Requires: powershell v6 https://blogs.msdn.microsoft.com/powershell/2018/01/10/powershell-core-6-0-generally-available-ga-and-supported/
 # Discalimer: Use of this script does not imply any rights to Palo Alto Networks products and/or services.
 #
@@ -33,7 +36,7 @@ $collection_images = @()
 $global:unique_cve = @() # array of unique CVEs
 $global:cve_packages = @{} # hash table of CVEs and their associated packages
 $global:newline = [System.Environment]::NewLine 
-$global:output_csv = "CVE,CVSS,PackageName,Status,Description,Tag" + $newline
+$global:output_csv = "tag,cve,packageName,comment,timeAdded" + $newline
 $global:i = 0 # counter for unique vulnerabilities 
 $time = Get-Date -f "yyyyMMdd-HHmmss"
 
@@ -57,8 +60,8 @@ function Unique_CVE([string]$image_name, [array]$cves)
             $global:cve_packages += @{$tmpCVE = $tmpPackageName}
             $global:i++
             # write to output csv string
-            $global:output_csv = $global:output_csv + $cve.cve+","+$cve.cvss+","+$tmpPackageName+","+$tmpCveStatus+","+$tmpCveDescription + $newline
-            
+            $global:output_csv = $global:output_csv + ","+$cve.cve+","+$tmpPackageName+","+$tmpCveStatus+","+ $newline
+           
             # Add to array of CVEs in case we need it again
             $global:unique_cve += $tmpCVE
             }
@@ -77,7 +80,7 @@ function Unique_CVE([string]$image_name, [array]$cves)
                 {
                 $global:i++
                 # write to output csv string
-                $global:output_csv = $global:output_csv + $cve.cve+","+$cve.cvss+","+$tmpPackageName+","+$tmpCveStatus+","+$tmpCveDescription + $newline
+                $global:output_csv = $global:output_csv + ","+$cve.cve+","+$tmpPackageName+","+$tmpCveStatus+","+ $newline
                 
                 $debug_output = "Adding package: " + $cve.CVE + "|" + $tmpPackageName
                 write-debug $debug_output
