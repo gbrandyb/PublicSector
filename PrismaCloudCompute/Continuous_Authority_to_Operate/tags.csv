@@ -522,4 +522,3 @@ ATO-FrontEnd-POAM,CVE-2016-4003,org.apache.struts_struts2-core,fixed in 2.3.28 1
 ATO-FrontEnd-POAM,CVE-2016-2162,org.apache.struts_struts2-core,fixed in 2.3.25,
 ATO-FrontEnd-Mitigating_Controls,CVE-2019-6706,lua5.3,open,
 ATO-FrontEnd-Mitigating_Controls,CVE-2020-24370,lua5.3,open,
-
