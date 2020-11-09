@@ -4,6 +4,8 @@ This repository contains scripts to implement the Continuous Authority to Operat
 
 ## Updates:
 * 20201023 - Works with v20.09 API and CSV output has been modified to work with [bulk_tagger.py python script](https://github.com/twistlock/sample-code/blob/f01089aa7a0b00f025397618ebb3de97e60d70ba/computeAPI/cve_tags/bulk_tagger.py)
+* 20201109 - Up to date [**tags.csv**](tags.csv) to demonstrate CATO with tag groups _ATO-FrontEnd-POAM_ and _ATO-FrontEnd-Mitigating_Controls_.
+Video overview of the CATO framework with Prisma Cloud Compute can be viewed [here.](https://www.youtube.com/watch?v=3Rz1xIP0-GQ)
 
 ## Scripts:
 **CATO-collection_query.ps1** - This script is used for the "Continuous Authority to Operate" (C-ATO) concepts to identify all vulnerabilities associated with a [Collection](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-09/prisma-cloud-compute-edition-admin/configure/collections.html) of images. The output is a CSV file containing all the unique CVE/packages found in all the images within a collection. An ATO Auditor can make the determination of what [Tag](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-09/prisma-cloud-compute-edition-admin/configure/tags.html) they want to associate with each CVE. The CSV file is then used as input for the CATO-tag_population.ps1 script to associate CVEs to Tags within the Console.
@@ -67,7 +69,7 @@ This repository contains scripts to implement the Continuous Authority to Operat
       ATO-20200601-Mitigating_Controls,CVE-2019-15903,expat,affected,
       ```
 
-      * Execute the following command with the modified CSV as a command line parameter. 
+      * Execute the following command with the modified CSV as a command line parameter.
       ```
       ./CATO-tag_population.ps1 20200625-121538-ATO-20200601-1-cves.csv
       ```
@@ -82,6 +84,12 @@ This repository contains scripts to implement the Continuous Authority to Operat
     Password for user pfox: *********
     Associated 505 CVEs to Tags
     ```
+
+## Example CSV
+[**Tags.csv**](tags.csv) is an example tags / CVE importer for the [API](https://cdn.twistlock.com/docs/api/twistlock_api.html#tags).
+Create two [tag groups](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-09/prisma-cloud-compute-edition-admin/configure/tags.html) _ATO-FrontEnd-POAM_ (any CVE with a "fixed" status) and _ATO-FrontEnd-Mitigating_Controls_ (any CVE without a "fixed" status).
+Use the [bulk_tagger.py](https://github.com/twistlock/sample-code/blob/master/computeAPI/cve_tags/bulk_tagger.py) python script or [CATO-tag_population.ps1](#Scripts) powershell script to import the CVEs into the tag groups within your Console.
+
 
 ## Prerequisite:
 [Powershell v6+](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7)
