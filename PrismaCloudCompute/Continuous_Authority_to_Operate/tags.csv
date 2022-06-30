@@ -1383,4 +1383,3 @@ ATO-FrontEnd-POAM,CVE-2016-4436,org.apache.struts_struts2-core,fixed in 2.5.1 2.
 ATO-FrontEnd-POAM,CVE-2016-4461,org.apache.struts_struts2-core,fixed in 2.3.29,
 ATO-FrontEnd-POAM,CVE-2017-5638,org.apache.struts_struts2-core,fixed in 2.5.10.1 2.3.32,
 ATO-FrontEnd-POAM,CVE-2017-12611,org.apache.struts_struts2-core,fixed in 2.5.10.1 2.3.34,
-
