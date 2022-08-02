@@ -31,7 +31,7 @@ else
     write-host "Checking for images within collection: $arg1"
     }
 # variables
-$tlconsole = "https://console.example.com:8083"
+$tlconsole = "https://console-master-alonzo.gbrandyburg.demo.twistlock.com"
 $collection_images = @()
 $global:unique_cve = @() # array of unique CVEs
 $global:cve_packages = @{} # hash table of CVEs and their associated packages

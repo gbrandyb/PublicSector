@@ -33,7 +33,7 @@ else
     }
 
 # variables
-$tlconsole = "https://console.example.com:8083"
+$tlconsole = "https://console-master-alonzo.gbrandyburg.demo.twistlock.com"
 $i = 0
 
 #import CSV file
